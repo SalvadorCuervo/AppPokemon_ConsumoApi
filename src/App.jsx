@@ -17,7 +17,7 @@ function App() {
     const axiosApi = () => {
         axios.get( `https://crud-poke-app.azurewebsites.net/v1/pokemon` )
             .then( respuesta => {
-                setPokemons( respuesta.data );
+                setPokemons( respuesta.data.data );
             })
             .catch( error => { console.log( error ) })
     }

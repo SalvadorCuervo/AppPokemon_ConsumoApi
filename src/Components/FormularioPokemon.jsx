@@ -24,7 +24,7 @@ function FormularioPokemon({ pokemons, setPokemons, pokemonSelected, setPokemonS
     const agregarAxiosApi = ( objetoPokemon ) => {
         axios.post( `https://crud-poke-app.azurewebsites.net/v1/pokemon`, objetoPokemon )
             .then( respuesta => {
-                const nuevoObjetoPokemon = respuesta.data;
+                const nuevoObjetoPokemon = respuesta.data.data;
                 setPokemons([ ...pokemons, nuevoObjetoPokemon ]);
                 reiniciarFormulario();
             })
@@ -35,7 +35,7 @@ function FormularioPokemon({ pokemons, setPokemons, pokemonSelected, setPokemonS
         objetoPokemon._id = pokemonSelected._id;
         axios.put( `https://crud-poke-app.azurewebsites.net/v1/pokemon/${objetoPokemon._id}`, objetoPokemon )
             .then( respuesta => {
-                const nuevoObjetoPokemon = respuesta.data;
+                const nuevoObjetoPokemon = respuesta.data.data;
                 const pokemonsActualizados = pokemons.map( pokemon => pokemon._id === nuevoObjetoPokemon._id ? nuevoObjetoPokemon : pokemon );
                 setPokemons(pokemonsActualizados);
                 setPokemonSelected({});
